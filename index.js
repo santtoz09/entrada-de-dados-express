@@ -22,16 +22,20 @@ app.get('/variaveis/:nome/:idade', (req, res) => {
     res.send("variaveis " + variavel)
 })
 
-app.get('/logicos', (req, res) => {
-    res.send('exercicio: logico ' + logicos())
+app.get('/logicos/:nota', (req, res) => {
+    let nota = parseFloat(req.params.nota);
+    res.send('exercicio: logico ' + logicos(nota))
 })
 
-app.get('/switchCase', (req, res) => {
-    res.send('exercicio: estrutura case ' + estruturaCase())
+app.get('/switchCase/:opcao', (req, res) => {
+    let opcao = parseInt(req.params.opcao);
+    res.send('exercicio: estrutura case ' + estruturaCase(opcao))
 })
 
-app.get('/aritmeticos', (req, res) => {
-    res.send('exercicio: numeros aritmeticos ' + aritmeticos(3, 3))
+app.get('/aritmeticos/:a/:b', (req, res) => {
+    let a = parseFloat(req.params.a);
+    let b = parseFloat(req.params.b);
+    res.send('exercicio: numeros aritmeticos ' + aritmeticos(a, b))
 })
 
 app.get('/loop', (req, res) => {
@@ -45,8 +49,10 @@ app.get('/ifElse/:n1', (req, res) => {
 })
 
 
-app.get('/relacionais', (req, res) => {
-    res.send('exercicio: relacionais ' + relacionais(3, 3))
+app.get('/relacionais/:a/:b', (req, res) => {
+    let a = parseFloat(req.params.a);
+    let b = parseFloat(req.params.b);
+    res.send('exercicio: relacionais ' + relacionais(a, b))
 })
 
 app.get('/vetor', (req, res) => {
@@ -60,39 +66,62 @@ app.get('/vetor', (req, res) => {
 
 //queryString: --------------------------------------------------------------------------------------------------------
 app.get('/variaveis', (req, res) => {
-    let variavel = variaveis();
-    res.send("variaveis " + variavel())
-})
+    // Obtendo os parâmetros da query string
+    const nome = req.query.nome; // Exemplo: ?nome=Joao
+    const idade = req.query.idade; // Exemplo: ?idade=25
+
+    // Passando os parâmetros para a função variaveis
+    let variavel = variaveis(nome, idade);
+
+    // Respondendo com os dados processados
+    res.send(`variaveis: Nome = ${nome}, Idade = ${idade}`);
+});
 
 app.get('/logicos', (req, res) => {
-    res.send('exercicio: logico ' + logicos())
+    const nota = parseFloat(req.query.nota); 
+    let resultado = logicos(nota);
+    res.send('exercicio: logico ' + resultado)
 })
 
 app.get('/switchCase', (req, res) => {
-    res.send('exercicio: estrutura case ' + estruturaCase())
+    const opcao = parseInt(req.query.opcao);
+    let resultado = estruturaCase(opcao);
+    res.send('exercicio: estrutura case ' + resultado)  
 })
 
 
 app.get('/aritmeticos', (req, res) => {
-    res.send('exercicio: numeros aritmeticos ' + aritmeticos(3, 3))
+    const a = parseFloat(req.query.a);
+    const b = parseFloat(req.query.b);
+    let resultado = aritmeticos(a, b);
+    res.send('exercicio: numeros aritmeticos ' + aritmeticos(a, b))
 })
 
 
 app.get('/loop', (req, res) => {
-    res.send('exercicio: loop' + loop)
+    const loop = loop();
+    let resultado = loop;
+    res.send('exercicio: loop ' + resultado)
 })
 
 
 app.get('/ifElse', (req, res) => {
-    res.send('exercicio: if else ' + ifElse())
+    const nota = parseFloat(req.query.n1);
+    let resultado = ifElse(nota);
+    res.send('Exercicio: if else ' + '<br><br>' + resultado)
 })
 
 app.get('/relacionais', (req, res) => {
-    res.send('exercicio: relacionais ' + relacionais(3, 3))
+    const a = parseFloat(req.query.a);
+    const b = parseFloat(req.query.b);
+    let resultado = relacionais(a, b);
+    res.send('exercicio: relacionais ' + resultado)
 })
 
 app.get('/vetor', (req, res) => {
-    res.send('exercicio: vetor ' + vetor())
+    const vetor = vetor();
+    let resultado = vetor;
+    res.send('exercicio: vetor ' + resultado)  
 })
 
 

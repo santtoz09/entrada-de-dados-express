@@ -1,5 +1,5 @@
  function vetor() {
-    let vetor = [1, 2, 3];
+    let vetor = [1, 2, 3, 4, 5]
     return vetor
 }
 

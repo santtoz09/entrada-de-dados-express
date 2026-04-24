@@ -1,17 +1,13 @@
- function estruturaCase() {
-    let opcao1 = 2;
-    switch (opcao1) {
+ function estruturaCase(opcao) {
+    switch (opcao) {
         case 1:
-            return("opção escolhida: opcao um");
-            break;
-
+            return "Opção 1 selecionada";
         case 2:
-            return("opção escolhida: opcao dois")
-            break;
-
+            return "Opção 2 selecionada";
+        case 3:
+            return "Opção 3 selecionada";
         default:
-            return("opção escolhida: opcao invalida")
-            break;
+            return "Opção inválida";
     }
 }
 
